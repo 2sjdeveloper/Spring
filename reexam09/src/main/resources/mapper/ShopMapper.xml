@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dbal.app.emp.mapper.EmpMapper">
+
+<select id="getProductNo" resultType="int">
+SELECT MAX(PRODUCT_ID) + 1
+ FROM PRODUCT_TBL_10
+</select>
+
+<!-- 조회 -->
+<select id="getShopList" resultType="ProductVO">
+SELECT PRODUCT_ID
+       ,PRODUCT_NAME
+       ,PRODUCT_PRICE
+       ,PRODUCT_INFO
+       ,PRODUCT_DATE
+       ,COMPANY
+       ,MANAGER_ID
+FROM PRODUCT_TBL_10
+</select>
+
+<!-- 등록 -->
+<insert id="insertProduct" parameterType="ProductVO">
+	INSERT INTO PRODUCT_TBL_10(
+				PRODUCT_ID
+		       ,PRODUCT_NAME
+		       ,PRODUCT_PRICE
+		       ,PRODUCT_INFO
+		       ,PRODUCT_DATE
+		       ,COMPANY
+		       ,MANAGER_ID			
+			) values (
+				#{productId}
+				,#{productName}
+				,#{productPrice}
+				,#{productInfo}
+				,#{productDate}
+				,#{company}
+				,#{managerId}
+			)
+	
+
+</insert>
+
+</mapper>
